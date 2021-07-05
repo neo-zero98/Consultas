@@ -1,0 +1,234 @@
+<div class="row">
+  <div class="col-md-8">
+    <form [formGroup]="form" (ngSubmit)="enviarFormulario()">
+<!-- seccion       -->
+      <div class="row g-2 mb-3">
+
+        <!-- seccion -->
+        <div class="col-md">
+          <div class="form-floating">
+            <select
+                    (change)="setSeccion($event)"
+                    class="form-select"
+                    formControlName="seccion"
+                    [class.is-invalid]="form.controls.seccion.touched && form.controls.seccion.invalid && form.invalid"
+                    required
+                    >
+              <option *ngFor="let item of secciones" [value]="item.id">{{item.id}}</option>
+            </select>
+            <label for="floatingSelectGrid">Seccion</label>
+          </div>
+        </div>
+
+        <!-- datepicker -->
+        <div class="col-md">
+          <div class="form-floating">
+            <input type="date"
+                    class="form-control"
+                    formControlName="fecha_registro"
+                    [class.is-invalid]="form.controls.fecha_registro.touched && form.controls.fecha_registro.invalid && form.invalid"
+                    required>
+          </div>
+        </div>
+      </div>
+      <!-- Localidad -->
+      <div *ngIf="localidad && form.value.seccion" class="form-floating mb-3">
+        <select
+                class="form-select"
+                required
+                >
+          <option>{{localidad}}</option>
+        </select>
+        <label for="floatingSelectGrid">Localidad</label>
+      </div>
+<!-- nombres -->
+      <div class="form-floating mb-3">
+        <input
+                type="text"
+                class="form-control"
+                formControlName="nombres"
+                [class.is-invalid]="form.controls.nombres.touched && form.controls.nombres.invalid && form.invalid"
+                required>
+        <label for="floatingPassword">Nombre(s)</label>
+        <small
+          *ngIf="form.controls.nombres.touched && form.controls.nombres.invalid && form.invalid"
+          class="text-danger">campo no valido</small>
+      </div>
+
+      <div class="row g-2 mb-3">
+<!-- apeelido paterno -->
+        <div class="form-floating col-md">
+          <input
+                  type="text"
+                  class="form-control"
+                  formControlName="apellido_paterno"
+                  [class.is-invalid]="form.controls.apellido_paterno.touched && form.controls.apellido_paterno.invalid && form.invalid"
+                  required>
+          <label for="floatingPassword">Apellido Paterno</label>
+          <small
+            *ngIf="form.controls.apellido_paterno.touched && form.controls.apellido_paterno.invalid && form.invalid"
+            class="text-danger">campo no valido</small>
+        </div>
+<!-- apellido materno -->
+        <div class="form-floating col-md">
+          <input
+                  type="text"
+                  class="form-control"
+                  formControlName="apellido_materno"
+                  [class.is-invalid]="form.controls.apellido_materno.touched && form.controls.apellido_materno.invalid && form.invalid"
+                  required>
+          <label for="floatingPassword">Apellido Materno</label>
+          <small
+            *ngIf="form.controls.apellido_materno.touched && form.controls.apellido_materno.invalid && form.invalid"
+            class="text-danger">campo no valido</small>
+        </div>
+      </div>
+
+      <div class="row g-2 mb-3">
+<!-- telefono -->
+        <div class="form-floating col-md-8">
+          <input
+                  type="number"
+                  class="form-control"
+                  formControlName="telefono"
+                  [class.is-invalid]="form.controls.telefono.touched && form.controls.telefono.invalid && form.invalid"
+                  required>
+          <label for="floatingPassword">Celular</label>
+          <small
+            *ngIf="form.controls.telefono.touched && form.controls.telefono.invalid && form.invalid"
+            class="text-danger">campo no valido</small>
+        </div>
+<!-- sexo -->
+        <div class="col-md-4">
+          <div class="form-floating">
+            <select class="form-select"
+                    formControlName="sexo"
+                    [class.is-invalid]="form.controls.sexo.touched && form.controls.sexo.invalid && form.invalid"
+                    required
+                    >
+              <option  value="Mujer">Mujer</option>
+              <option value="Hombre">Hombre</option>
+            </select>
+            <label for="floatingSelectGrid">Sexo</label>
+          </div>
+        </div>
+
+      </div>
+<!-- direccion -->
+      <div class="form-floating mb-3">
+        <textarea
+                class="form-control"
+                formControlName="direccion"
+                [class.is-invalid]="form.controls.direccion.touched && form.controls.direccion.invalid && form.invalid"
+                ></textarea>
+        <label for="floatingTextarea">Direccion</label>
+        <small
+          *ngIf="form.controls.direccion.touched && form.controls.direccion.invalid && form.invalid"
+          class="text-danger">campo no valido</small>
+      </div>
+
+
+<!-- direccion -->
+      <!-- <div formGroupName="direccion"> -->
+        <!-- calle -->
+        <!-- <div class="form-floating mb-3">
+          <textarea
+                  class="form-control"
+                  formControlName="calle"
+                  [class.is-invalid]="form.get('direccion').get('calle').touched && form.get('direccion').get('calle').invalid && form.invalid"
+                  ></textarea>
+          <label for="floatingTextarea">Calle</label>
+          <small
+            *ngIf="form.get('direccion').get('calle').touched && form.get('direccion').get('calle').invalid && form.invalid"
+            class="text-danger">campo no valido</small>
+        </div>
+        <div class="row g-2 mb-3"> -->
+          <!-- numero interior -->
+          <!-- <div class="form-floating col-md">
+            <input
+                    type="number"
+                    class="form-control"
+                    formControlName="numero_interior"
+                    [class.is-invalid]="form.get('direccion').get('numero_interior').touched && form.get('direccion').get('numero_interior').invalid && form.invalid"
+                    required>
+            <label for="floatingPassword">Número</label>
+            <small
+              *ngIf="form.get('direccion').get('numero_interior').touched && form.get('direccion').get('numero_interior').invalid && form.invalid"
+              class="text-danger">campo no valido</small>
+          </div> -->
+          <!-- cp -->
+          <!-- <div class="form-floating col-md">
+            <input
+                    type="number"
+                    class="form-control"
+                    formControlName="cp"
+                    [class.is-invalid]="form.get('direccion').get('cp').touched && form.get('direccion').get('cp').invalid && form.invalid"
+                    required>
+            <label for="floatingPassword">cp</label>
+            <small
+              *ngIf="form.get('direccion').get('cp').touched && form.get('direccion').get('cp').invalid && form.invalid"
+              class="text-danger">campo no valido</small>
+          </div> -->
+          <!-- boton calcular direccion -->
+          <!-- <div class="col-md">
+            <button (click)="buscarPorCp()" type="button" class="btn btn-outline-secondary">Asentamiento</button>
+          </div>
+        </div>
+        <div *ngIf="direcciones.length > 0" class="row g-2 mb-3"> -->
+
+          <!-- asentamiento -->
+          <!-- <div class="col-md">
+            <div class="form-floating">
+              <select
+                      (change)="setAsentamiento($event)"
+                      class="form-select"
+                      formControlName="asentamiento"
+                      [class.is-invalid]="form.get('direccion').get('asentamiento').touched && form.get('direccion').get('asentamiento').invalid && form.invalid"
+                      required
+                      >
+                <option *ngFor="let item of direcciones" [value]="item.asentamiento">{{item.asentamiento}}</option>
+              </select>
+              <label for="floatingSelectGrid">asentamiento</label>
+            </div>
+          </div>
+
+        </div>
+      </div> -->
+
+<!-- capturista -->
+      <!-- <div class="form-floating mb-3">
+        <input
+                type="text"
+                class="form-control"
+                formControlName="capturista"
+                [class.is-invalid]="form.controls.capturista.touched && form.controls.capturista.invalid && form.invalid"
+                required>
+        <label for="floatingPassword">Nombre completo del capturista</label>
+        <small
+          *ngIf="form.controls.capturista.touched && form.controls.capturista.invalid && form.invalid"
+          class="text-danger">campo no valido</small>
+      </div> -->
+
+      <div class="d-grid gap-2 mb-5">
+        <button [disabled]="form.invalid" type="submit" class="btn btn-success">Aceptar</button>
+      </div>
+    </form>
+  </div>
+  <div class="col-md">
+    <!-- {{form.value | json}} -->
+    <label for=""> <b>Fecha:</b>  {{form.value.fecha_registro}}</label><br>
+    <label for=""> <b>Seccion:</b>  {{form.value.seccion}}</label><br>
+    <label for=""> <b>Localidad:</b> {{localidad}}</label><br>
+    <label for=""> <b>Nombre(s):</b> {{form.value.nombres}}</label><br>
+    <label for=""> <b>Apellido paterno:</b> {{form.value.apellido_paterno}}</label><br>
+    <label for=""> <b>Apellido materno:</b> {{form.value.apellido_materno}}</label><br>
+    <label for=""> <b>Celular:</b>  {{form.value.telefono}}</label><br>
+    <label for=""> <b>Sexo:</b> {{form.value.sexo}}</label><br>
+    <label for=""> <b>Direccion: </b> {{form.value.direccion}}</label><br>
+    <!-- <label for=""> <b>Numero:</b> {{form.value.direccion.numero_interior}}</label><br>
+    <label for=""> <b>CP:</b> {{form.value.direccion.cp}}</label><br>
+    <label for=""> <b>Asentamiento:</b> {{form.value.direccion.asentamiento}}</label><br>
+    <label for=""> <b>Capturista:</b> {{form.value.capturista}}</label><br> -->
+  </div>
+</div>
+

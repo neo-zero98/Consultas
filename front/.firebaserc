@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "consultas-12aab": {
+      "hosting": {
+        "front": [
+          "consultas-12aab"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "consultas-12aab"
+  }
+}
